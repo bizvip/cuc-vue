@@ -45,9 +45,5 @@ app.config.globalProperties.$title = import.meta.env.VITE_APP_TITLE
 
 app.mount('#app')
 
-tool.capsule('MineAdmin', `v${packageJson.version} release`)
-console.log('MineAdmin 官网  https://www.mineadmin.com')
-console.log('MineAdmin 文档  https://doc.mineadmin.com')
-console.log('MineAdmin Github https://github.com/kanyxmo/MineAdmin')
-console.log('MineAdmin-Vue Github https://github.com/kanyxmo/MineAdmin-Vue')
-console.log('请不要吝啬您的 star，谢谢 ~ 🤩🤩🤩')
+tool.capsule('渠道联盟中心管理系统', `1.0.0`)
+console.log('133-1-1-A.C.')
