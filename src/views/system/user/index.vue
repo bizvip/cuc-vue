@@ -169,9 +169,10 @@ const crud = reactive({
   searchColNumber: 3,
   showIndex: false,
   pageLayout: 'fixed',
-  rowSelection: { showCheckedAll: true },
+  rowSelection: false,
   operationColumn: true,
   operationWidth: 200,
+  operationColumnWidth: 200,
   add: {
     show: true,
     api: user.save,
@@ -379,14 +380,16 @@ const columns = reactive([
   {
     title: '昵称',
     dataIndex: 'nickname',
-    width: 120
+    width: 120,
+    disabled: true,
+    display: true
   },
   {
     title: '角色',
     dataIndex: 'role_ids',
     width: 120,
     formType: 'select',
-    multiple: true,
+    multiple: false,
     dict: {
       url: 'system/role/list',
       props: {
@@ -404,16 +407,21 @@ const columns = reactive([
     editDefaultValue: async (record) => {
       const response = await user.read(record.id)
       return response.data.roleList.map(item => item.id)
-    }
+    },
+    addDisplay: true,
+    addDisabled: false,
+    editDisplay: true,
+    editDisabled: true
   },
   {
     title: '手机',
     dataIndex: 'phone',
     width: 150,
     search: true,
+    hide: true,
     commonRules: [
       {
-        match: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/,
+        match: /^[+0-9]{9,15}$/,
         message: '请输入正确的手机号码'
       }
     ]

@@ -268,20 +268,6 @@ const settingFormLayout = (layout) => {
   })
 }
 
-// const formItemShow = (item) => {
-// if (!isUndefined(item.display)) {
-//   return item.display
-// } else {
-//   if (currentAction.value === 'add' && item?.addDisplay !== false) {
-//     return true
-//   }
-//   if (currentAction.value === 'edit' && item?.editDisplay !== false) {
-//     return true
-//   }
-//   return false
-// }
-// }
-
 const formItemShow = (item) => {
   let displayProp = currentAction.value === 'add' ? 'addDisplay' : currentAction.value === 'edit' ? 'editDisplay' : 'display'
 
@@ -294,20 +280,6 @@ const formItemShow = (item) => {
   return true
 }
 
-
-// const formItemDisabled = (item) => {
-//   if (currentAction.value === 'add' && ! isUndefined(item.addDisabled)) {
-//     return item.addDisabled
-//   }
-//   if (currentAction.value === 'edit' && ! isUndefined(item.editDisabled)) {
-//     return item.editDisabled
-//   }
-//   if (! isUndefined(item.disabled)) {
-//     return item.disabled
-//   }
-//   return false
-// }
-
 const formItemDisabled = (item) => {
   let disabledProp = currentAction.value === 'add' ? 'addDisabled' : currentAction.value === 'edit' ? 'editDisabled' : 'disabled'
 
@@ -319,19 +291,6 @@ const formItemDisabled = (item) => {
 
   return false
 }
-
-// const formItemReadonly = (item) => {
-//   if (currentAction.value === 'add' && ! isUndefined(item.addReadonly)) {
-//     return item.addReadonly
-//   }
-//   if (currentAction.value === 'edit' && ! isUndefined(item.editReadonly)) {
-//     return item.editReadonly
-//   }
-//   if (! isUndefined(item.readonly)) {
-//     return item.readonly
-//   }
-//   return false
-// }
 
 const formItemReadonly = (item) => {
   let readonlyProp = currentAction.value === 'add' ? 'addReadonly' : currentAction.value === 'edit' ? 'editReadonly' : 'readonly'
