@@ -20,7 +20,7 @@ export default {
   // 设置选择列
   rowSelection: undefined,
   // 是否显示边框
-  bordered: { wrapper: false, cell: false },
+  bordered: { wrapper: true, cell: true },
   // 是否开启拖拽排序
   dragSort: false,
   // 每页记录数

@@ -334,7 +334,9 @@ const columns = reactive([
     commonRules: [
       {
         required: true,
-        message: '账户必填'
+        message: '账户必填',
+        minLength: 6,
+        maxLength: 32
       }
     ]
   },
