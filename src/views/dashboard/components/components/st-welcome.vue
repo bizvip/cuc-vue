@@ -15,8 +15,8 @@
             {{ userStore.user.nickname || userStore.user.username }}，欢迎回来！
           </div>
           <div class="leading-5 mt-2">
-            <a-tag color="blue" bordered>免费开源、可商用</a-tag>
-            欢迎使用MineAdmin后台权限管理系统，系统开源、免费使用。喜欢的请点个 ⭐Star。
+            <a-tag color="blue" bordered>今天又要发财了</a-tag>
+            欢迎使用渠道联盟中心管理系统，同联盟，共发财
             <a-space size="large">
               <a-link @click="donate"><icon-thumb-up /> 给作者买杯奶茶</a-link>
             </a-space>

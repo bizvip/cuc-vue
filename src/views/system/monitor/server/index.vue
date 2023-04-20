@@ -49,10 +49,10 @@
       <div class="flex justify-between w-full redis-info mt-3" v-else>
         <a-descriptions :column="2" size="large" bordered title="PHP及环境信息" class="w-full">
           <a-descriptions-item label="操作系统">{{ phpenv.os }}</a-descriptions-item>
-          <a-descriptions-item label="PHP版本">{{ phpenv.php_version }}</a-descriptions-item>
-          <a-descriptions-item label="Swoole版本">{{ phpenv.swoole_version }}</a-descriptions-item>
-          <a-descriptions-item label="Hyperf版本">{{ phpenv.hyperf_version }}</a-descriptions-item>
-          <a-descriptions-item label="MineAdmin版本">{{ phpenv.mineadmin_version }}</a-descriptions-item>
+          <a-descriptions-item label="PHP">{{ phpenv.php_version }}</a-descriptions-item>
+          <a-descriptions-item label="Swoole">{{ phpenv.swoole_version }}</a-descriptions-item>
+          <a-descriptions-item label="Hyperf">{{ phpenv.hyperf_version }}</a-descriptions-item>
+          <a-descriptions-item label="渠道管理中心版本"> 1.0.0 </a-descriptions-item>
           <a-descriptions-item label="系统物理路径">{{ phpenv.project_path }}</a-descriptions-item>
           <a-descriptions-item label="系统启动时间">{{ phpenv.start_time }}</a-descriptions-item>
           <a-descriptions-item label="系统运行时间">{{ phpenv.run_time }}</a-descriptions-item>

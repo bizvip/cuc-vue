@@ -36,7 +36,7 @@ export default {
   // 新增、编辑、删除完成后是否刷新表格
   dataCompleteRefresh: true,
   // 表格大小
-  size: 'medium',
+  size: 'large',
   // 是否开启双击编辑数据
   isDbClickEdit: false,
   // 是否显示展开/折叠按钮

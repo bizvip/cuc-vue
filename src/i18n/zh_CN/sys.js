@@ -42,7 +42,7 @@ export default {
   goHome: '回到首页',
   notFoundPage: '啊哦，访问的页面被火星人劫走了...',
   login: {
-    slogan: '开箱即用的高质量中后台管理系统',
+    slogan: '渠道有联盟，联盟更赚钱，赚钱如狂飙',
     title: '登录',
     username: '账户',
     usernameNotice: '请输入账户',
@@ -51,7 +51,7 @@ export default {
     verifyCode: '请输入验证码',
     verifyCodeNotice: '请输入正确的验证码',
     loginBtn: '登录',
-    otherLoginType: '其他登录方式'
+    otherLoginType: '其他登录方式暂不支持'
   },
   verifyCode: {
     switch: '点击切换验证码',
@@ -65,9 +65,9 @@ export default {
   animate: {
     fade: '页面渐隐渐出',
     sliderLeft: '页面向左渐出',
-    sliderRight:'页面向右渐出',
-    sliderDown:'页面向下渐出',
-    sliderUp:'页面向上渐出',
+    sliderRight: '页面向右渐出',
+    sliderDown: '页面向下渐出',
+    sliderUp: '页面向上渐出',
   },
   tags: {
     refresh: '刷新',

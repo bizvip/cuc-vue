@@ -135,7 +135,7 @@
   position: fixed;
   width: 100%; height: 100%;
   z-index: 2;
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(5px);
 }
 .login-container {
   width: 100%;
@@ -158,8 +158,10 @@
     height: 491px;
     background-image: url(@/assets/login_picture.svg);
     background-repeat: no-repeat;
-    background-position: center 60px;
-    background-size:contain;
+    //background-position: center 60px;
+    //background-size:contain;
+    background-position: center center;
+    background-size: cover;
   }
 
   .logo {

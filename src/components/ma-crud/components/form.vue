@@ -1,27 +1,27 @@
 <template>
-  <component
-    :is="componentName"
-    v-model:visible="dataVisible"
-    :on-before-ok="submit" @cancel="close"
-    ok-text="保存"
-    cancel-text="关闭"
-    draggable
-    :width="options.formOption.width"
-    :fullscreen="options.formOption.isFull || false"
-    unmount-on-close
-  >
-    <template #title>{{ actionTitle }}</template>
-    <a-spin :loading="dataLoading" tip="加载中..." class="w-full">
-      <ma-form v-model="form" :columns="formColumns" :options="{ showButtons: false }" ref="maFormRef"/>
-    </a-spin>
-  </component>
+    <component
+            :is="componentName"
+            v-model:visible="dataVisible"
+            :on-before-ok="submit" @cancel="close"
+            ok-text="保存"
+            cancel-text="关闭"
+            draggable
+            :width="options.formOption.width"
+            :fullscreen="options.formOption.isFull || false"
+            unmount-on-close
+    >
+        <template #title>{{ actionTitle }}</template>
+        <a-spin :loading="dataLoading" tip="加载中..." class="w-full">
+            <ma-form v-model="form" :columns="formColumns" :options="{ showButtons: false }" ref="maFormRef"/>
+        </a-spin>
+    </component>
 </template>
 
 <script setup>
-import { ref, toRaw, getCurrentInstance, inject, provide } from 'vue'
+import { getCurrentInstance, inject, provide, ref, toRaw } from 'vue'
 import { Message } from '@arco-design/web-vue'
 import { containerItems } from '@cps/ma-form/js/utils'
-import { isArray, isFunction, get, cloneDeep, isUndefined } from 'lodash'
+import { cloneDeep, get, isArray, isFunction, isUndefined } from 'lodash'
 import { useRouter } from 'vue-router'
 import tool from '@/utils/tool'
 import { useFormStore } from '@/store/index'
@@ -32,7 +32,7 @@ const app = getCurrentInstance().appContext.app
 const maFormRef = ref()
 const componentName = ref('a-modal')
 const columns = inject('columns')
-const layoutColumns = ref(new Map());
+const layoutColumns = ref(new Map())
 const options = inject('options')
 const formColumns = ref([])
 const currentAction = ref('')
@@ -40,7 +40,10 @@ const dataVisible = ref(false)
 const form = ref({})
 const actionTitle = ref('')
 const dataLoading = ref(true)
-const emit = defineEmits(['success', 'error'])
+const emit = defineEmits([
+  'success',
+  'error'
+])
 
 provide('form', toRaw(form))
 
@@ -60,7 +63,7 @@ const submit = async () => {
     response = await options.edit.api(formData[options.pk], formData)
     isFunction(options.afterEdit) && await options.afterEdit(response, formData)
   }
-  if ( response.success ) {
+  if (response.success) {
     Message.success(response.message || `${actionTitle.value}成功！`)
     emit('success', response)
     return true
@@ -73,11 +76,11 @@ const open = () => {
   layoutColumns.value = new Map()
   init()
   if (options.formOption.viewType === 'tag') {
-    if (! options.formOption.tagId ) {
+    if (!options.formOption.tagId) {
       Message.info('未配置 tagId')
       return
     }
-    if (! options.formOption.tagName ) {
+    if (!options.formOption.tagName) {
       Message.info('未配置 tagName')
       return
     }
@@ -138,11 +141,14 @@ const init = () => {
   settingFormLayout(layout)
   if (isArray(layout) && layout.length > 0) {
     formColumns.value = layout
-    const excludeColumns = ['__index', '__operation']
+    const excludeColumns = [
+      '__index',
+      '__operation'
+    ]
     columns.map(item => {
       if (options.formExcludePk) excludeColumns.push(options.pk)
       if (excludeColumns.includes(item.dataIndex)) return
-      ! item.__formLayoutSetting && formColumns.value.push(item)
+      !item.__formLayoutSetting && formColumns.value.push(item)
     })
   }
 
@@ -150,10 +156,16 @@ const init = () => {
 }
 
 const columnItemHandle = async (item) => {
-  const excludeColumns = ['__index', '__operation']
+  const excludeColumns = [
+    '__index',
+    '__operation'
+  ]
   if (options.formExcludePk) excludeColumns.push(options.pk)
   if (excludeColumns.includes(item.dataIndex)) {
-    layoutColumns.value.set(item.dataIndex, {dataIndex: item.dataIndex, layoutFormRemove: true})
+    layoutColumns.value.set(item.dataIndex, {
+      dataIndex: item.dataIndex,
+      layoutFormRemove: true
+    })
     return
   }
   layoutColumns.value.set(item.dataIndex, item)
@@ -190,13 +202,13 @@ const columnItemHandle = async (item) => {
 }
 const settingFormLayout = (layout) => {
   if (!isArray(layout)) {
-    return ;
+    return
   }
   layout.map(async (item, index) => {
-    if ( containerItems.includes(item.formType) ) {
-      switch ( item.formType ) {
+    if (containerItems.includes(item.formType)) {
+      switch (item.formType) {
         case 'tabs':
-          if ( item.tabs ) {
+          if (item.tabs) {
             item.tabs.map(tab => {
               tab.formList && (tab.formList = settingFormLayout(tab.formList))
             })
@@ -207,16 +219,16 @@ const settingFormLayout = (layout) => {
           break
         case 'grid-tailwind':
         case 'grid':
-          if ( item.cols ) {
+          if (item.cols) {
             item.cols.map(col => {
               col.formList && (col.formList = settingFormLayout(col.formList))
             })
           }
           break
         case 'table':
-          if ( item.rows ) {
+          if (item.rows) {
             item.rows.map(row => {
-              if ( row.cols ) {
+              if (row.cols) {
                 row.cols.map(col => {
                   col.formList && (col.formList = settingFormLayout(col.formList))
                 })
@@ -232,18 +244,18 @@ const settingFormLayout = (layout) => {
         // 判断是否layout配置移除
         if (column.layoutFormRemove) {
           layout[index] = undefined
-          return ;
+          return
         }
         column['__formLayoutSetting'] = true
         item = column
         layout[index] = item
-      }else{
+      } else {
         // 当公共column不存在，则执行column配置项处理
         await columnItemHandle(item)
         let column = layoutColumns.value.get(item.dataIndex)
         if (column.layoutFormRemove) {
           layout[index] = undefined
-          return ;
+          return
         }
         item['__formLayoutSetting'] = true
         layout[index] = item
@@ -256,43 +268,83 @@ const settingFormLayout = (layout) => {
   })
 }
 
+// const formItemShow = (item) => {
+// if (!isUndefined(item.display)) {
+//   return item.display
+// } else {
+//   if (currentAction.value === 'add' && item?.addDisplay !== false) {
+//     return true
+//   }
+//   if (currentAction.value === 'edit' && item?.editDisplay !== false) {
+//     return true
+//   }
+//   return false
+// }
+// }
+
 const formItemShow = (item) => {
-  if (!isUndefined(item.display)) {
+  let displayProp = currentAction.value === 'add' ? 'addDisplay' : currentAction.value === 'edit' ? 'editDisplay' : 'display'
+
+  if (typeof item[displayProp] !== 'undefined') {
+    return item[displayProp]
+  } else if (typeof item.display !== 'undefined') {
     return item.display
-  } else {
-    if (currentAction.value === 'add' && item?.addDisplay !== false) {
-      return true
-    }
-    if (currentAction.value === 'edit' && item?.editDisplay !== false) {
-      return true
-    }
-    return false
   }
+
+  return true
 }
+
+
+// const formItemDisabled = (item) => {
+//   if (currentAction.value === 'add' && ! isUndefined(item.addDisabled)) {
+//     return item.addDisabled
+//   }
+//   if (currentAction.value === 'edit' && ! isUndefined(item.editDisabled)) {
+//     return item.editDisabled
+//   }
+//   if (! isUndefined(item.disabled)) {
+//     return item.disabled
+//   }
+//   return false
+// }
+
 const formItemDisabled = (item) => {
-  if (currentAction.value === 'add' && ! isUndefined(item.addDisabled)) {
-    return item.addDisabled
-  }
-  if (currentAction.value === 'edit' && ! isUndefined(item.editDisabled)) {
-    return item.editDisabled
-  }
-  if (! isUndefined(item.disabled)) {
+  let disabledProp = currentAction.value === 'add' ? 'addDisabled' : currentAction.value === 'edit' ? 'editDisabled' : 'disabled'
+
+  if (typeof item[disabledProp] !== 'undefined') {
+    return item[disabledProp]
+  } else if (typeof item.disabled !== 'undefined') {
     return item.disabled
   }
+
   return false
 }
+
+// const formItemReadonly = (item) => {
+//   if (currentAction.value === 'add' && ! isUndefined(item.addReadonly)) {
+//     return item.addReadonly
+//   }
+//   if (currentAction.value === 'edit' && ! isUndefined(item.editReadonly)) {
+//     return item.editReadonly
+//   }
+//   if (! isUndefined(item.readonly)) {
+//     return item.readonly
+//   }
+//   return false
+// }
+
 const formItemReadonly = (item) => {
-  if (currentAction.value === 'add' && ! isUndefined(item.addReadonly)) {
-    return item.addReadonly
-  }
-  if (currentAction.value === 'edit' && ! isUndefined(item.editReadonly)) {
-    return item.editReadonly
-  }
-  if (! isUndefined(item.readonly)) {
+  let readonlyProp = currentAction.value === 'add' ? 'addReadonly' : currentAction.value === 'edit' ? 'editReadonly' : 'readonly'
+
+  if (typeof item[readonlyProp] !== 'undefined') {
+    return item[readonlyProp]
+  } else if (typeof item.readonly !== 'undefined') {
     return item.readonly
   }
+
   return false
 }
+
 const formItemLabelWidth = (item) => {
   return item.labelWidth ?? options.labelWidth ?? undefined
 }
@@ -304,15 +356,15 @@ const toRules = (rules) => {
   }
 
   if (isArray(rules)) {
-    return rules.map(v => ({...v}))
+    return rules.map(v => ({ ...v }))
   }
-  
+
   if (!rules.validator && isFunction(rules.validatorFormData)) {
     rules.validator = (value, cb) => {
-       rules.validatorFormData(value, cb, form.value)
+      rules.validatorFormData(value, cb, form.value)
     }
   }
-  return {...rules}
+  return { ...rules }
 }
 
 const getRules = (item) => {
@@ -328,5 +380,11 @@ const getFormColumns = async (type = 'add') => {
   await init()
   return formColumns.value
 }
-defineExpose({ add, edit, currentAction, form, getFormColumns })
+defineExpose({
+  add,
+  edit,
+  currentAction,
+  form,
+  getFormColumns
+})
 </script>

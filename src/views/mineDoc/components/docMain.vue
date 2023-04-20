@@ -26,7 +26,7 @@
       class="footer"
       :style="`background-color: ${appStore.mode == 'light' ? '#fff' : '#242424'}`"
     >
-      MineAdmin v{{ config.version }} release Copyright © 2021-{{dayjs().format('YYYY')}} mineadmin.com All Rights Reserved.
+      ChannelUnionCentre v{{ config.version }} release Copyright © 2005-{{dayjs().format('YYYY')}} MAYA Corp. All Rights Reserved.
     </a-layout-footer>
   </a-layout>
 </template>

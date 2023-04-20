@@ -26,7 +26,6 @@ const options = reactive({
     url: 'channel/user/export',
     auth: ['channel:user:export']
   },
-  bordered: { wrapper: true, cell: true, headerCell: true },
   beforeRequest(params) {
     params.orderBy = 'id'
     params.orderType = 'desc'

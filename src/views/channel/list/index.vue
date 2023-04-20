@@ -65,14 +65,7 @@
         <a-drawer v-model:visible="detailVisible" width="900px" :footer="false">
             <template #title>查看渠道 {{ record?.data.channel_account }} 详情</template>
             <a-spin :loading="detailLoading" tip="数据加载中..." class="block">
-                <a-typography :style="{ marginTop: '-30px' }">
-                    <a-typography-title> {{ record?.data.channel_name }}</a-typography-title>
-                    <a-typography-paragraph class="text-right" style="font-size: 13px; color: var(--color-text-3)">
-                        <a-space size="large">
-                            <span>创建时间：{{ record?.data.created_at }}</span>
-                            <span>更新时间：{{ record?.data.updated_at }}</span>
-                        </a-space>
-                    </a-typography-paragraph>
+                <a-typography>
                     <a-form>
                         <div v-for="(value, key) in record?.data" :key="key">
                             <a-form-item :field="key" :label="key">
@@ -88,30 +81,30 @@
 
 </template>
 <script setup>
-import {reactive, ref} from 'vue';
-import channelList from '@/api/channel/channelList';
-import dayjs from 'dayjs';
+import { reactive, ref } from 'vue'
+import channelList from '@/api/channel/channelList'
+import dayjs from 'dayjs'
 
 /******************* showDetails start *******************/
-const detailVisible = ref(false);
-const detailLoading = ref(true);
+const detailVisible = ref(false)
+const detailLoading = ref(true)
 const record = ref({
   code: 0,
   data: {},
   message: '',
   success: false,
-});
-const visible = ref(false);
+})
+const visible = ref(false)
 
 const showDetail = async (id) => {
-  detailVisible.value = true;
-  detailLoading.value = true;
-  record.value = await channelList.getOne(id);
-  detailLoading.value = false;
-};
+  detailVisible.value = true
+  detailLoading.value = true
+  record.value = await channelList.getOne(id)
+  detailLoading.value = false
+}
 /******************* showDetails end *******************/
 
-const crudRef = ref();
+const crudRef = ref()
 const rangeShortcuts = reactive([
   {
     label: 'next 2 days',
@@ -155,7 +148,7 @@ const rangeShortcuts = reactive([
       dayjs().add(10, 'year'),
     ],
   },
-]);
+])
 const options = reactive({
   id: 'cm_channel_list',
   rowSelection: false,
@@ -184,10 +177,10 @@ const options = reactive({
     auth: ['channel:list:export'],
   },
   beforeRequest(params) {
-    params.orderBy = 'id';
-    params.orderType = 'desc';
+    params.orderBy = 'id'
+    params.orderType = 'desc'
   },
-});
+})
 
 const columns = reactive([
   {
@@ -222,7 +215,6 @@ const columns = reactive([
     placeholder: '直属上级的ID',
     search: true,
     hide: false,
-    disabled: true,
     display: false,
     width: 80,
     commonRules: {
@@ -400,7 +392,7 @@ const columns = reactive([
     hide: true,
     showTime: true,
   },
-]);
+])
 
 </script>
-<script> export default {name: 'channel:list'}; </script>
+<script> export default { name: 'channel:list' } </script>
