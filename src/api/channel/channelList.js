@@ -69,7 +69,7 @@ export default {
    * 更改渠道列表数据
    * @returns
    */
-  changeStatus(data = {}) {
+  updateValue(data = {}) {
     return request({
       url: 'channel/list/changeStatus',
       method: 'put',

@@ -101,29 +101,29 @@ const crud = reactive({
   recycleApi: role.getRecyclePageList,
   showIndex: false,
   pageLayout: 'fixed',
-  rowSelection: { showCheckedAll: true },
+  rowSelection: false,
   operationColumn: true,
   operationWidth: 300,
   operationColumnWidth: 300,
   add: {
-    show: true,
+    show: false,
     api: role.save,
     auth: ['system:role:save']
   },
   edit: {
-    show: true,
+    show: false,
     api: role.update,
     auth: ['system:role:update']
   },
   delete: {
-    show: true,
+    show: false,
     api: role.deletes,
     auth: ['system:role:delete'],
     realApi: role.realDeletes,
     realAuth: ['system:role:realDeletes']
   },
   recovery: {
-    show: true,
+    show: false,
     api: role.recoverys,
     auth: ['system:role:recovery']
   },
@@ -151,7 +151,7 @@ const columns = reactive([
     addDisplay: false,
     editDisplay: false,
     width: 50,
-    hide: true
+    hide: false
   },
   {
     title: '角色名称',
@@ -163,7 +163,8 @@ const columns = reactive([
         message: '角色名称必填'
       }
     ],
-    width: 220
+    width: 220,
+    disabled: true,
   },
   {
     title: '角色标识',
@@ -175,7 +176,8 @@ const columns = reactive([
         message: '角色标识必填'
       }
     ],
-    width: 180
+    width: 180,
+    disabled: true
   },
   {
     title: '排序',
@@ -204,7 +206,7 @@ const columns = reactive([
   {
     title: '备注',
     dataIndex: 'remark',
-    hide: true,
+    hide: false,
     formType: 'textarea',
   },
   {
