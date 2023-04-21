@@ -343,19 +343,6 @@ const columns = reactive([
     width    : 150,
   },
   {
-    title      : '负责人',
-    dataIndex  : 'in_charge',
-    formType   : 'input',
-    search     : true,
-    commonRules: {
-      required: false,
-      message : '请输入负责人',
-    },
-    hide       : false,
-    disabled   : true,
-    display    : false,
-  },
-  {
     title    : '层级',
     dataIndex: 'level',
     formType : 'input-number',

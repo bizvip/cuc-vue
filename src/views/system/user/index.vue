@@ -207,7 +207,7 @@ const crud = reactive({
     auth: ['system:user:export']
   },
   formOption: {
-    width: 800,
+    width: 900,
     layout: [
       {
         formType: 'grid',
@@ -323,7 +323,8 @@ const columns = reactive([
     formType: 'upload',
     type: 'image',
     rounded: true,
-    labelWidth: '86px'
+    labelWidth: '86px',
+    extra: '不上传则使用默认头像'
   },
   {
     title: '账户',
@@ -417,7 +418,7 @@ const columns = reactive([
     title: '手机',
     dataIndex: 'phone',
     width: 150,
-    search: true,
+    search: false,
     hide: true,
     commonRules: [
       {
@@ -432,6 +433,7 @@ const columns = reactive([
     width: 120,
     formType: 'select',
     multiple: true,
+    placeholder: '可以多选。岗位不起任何权限作用，仅供展示',
     dict: {
       url: 'system/post/list',
       props: {
@@ -442,8 +444,7 @@ const columns = reactive([
     hide: true,
     editDefaultValue: async (record) => {
       const response = await user.read(record.id)
-      const ids = response.data.postList.map(item => item.id)
-      return ids
+      return response.data.postList.map(item => item.id)
     }
   },
   {
