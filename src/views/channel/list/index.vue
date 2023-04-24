@@ -83,34 +83,31 @@
 
 </template>
 <script setup>
-import {
-  reactive,
-  ref
-}                  from 'vue'
+import { reactive, ref } from 'vue'
 import channelList from '@/api/channel/channelList'
-import dayjs       from 'dayjs'
+import dayjs from 'dayjs'
 import { Message } from '@arco-design/web-vue'
 
 /******************* showDetails start *******************/
 const detailVisible = ref(false)
 const detailLoading = ref(true)
-const record        = ref({
-  code   : 0,
-  data   : {},
+const record = ref({
+  code: 0,
+  data: {},
   message: '',
   success: false,
 })
-const visible       = ref(false)
+const visible = ref(false)
 
-const showDetail     = async (id) => {
+const showDetail = async (id) => {
   detailVisible.value = true
   detailLoading.value = true
-  record.value        = await channelList.getOne(id)
+  record.value = await channelList.getOne(id)
   detailLoading.value = false
 }
 /******************* showDetails end *******************/
 
-const crudRef        = ref()
+const crudRef = ref()
 const rangeShortcuts = reactive([
   {
     label: 'next 2 days',
@@ -170,209 +167,209 @@ const updateValue = (value, id, name) => {
 }
 
 const options = reactive({
-  id                  : 'cm_channel_list',
-  rowSelection        : false,
-  pk                  : 'id',
-  operationColumn     : true,
-  operationWidth      : 180,
+  id: 'cm_channel_list',
+  rowSelection: false,
+  pk: 'id',
+  operationColumn: true,
+  operationWidth: 180,
   operationColumnWidth: 180,
-  formOption          : {
+  formOption: {
     viewType: 'drawer',
-    width   : 700,
+    width: 700,
   },
-  api                 : channelList.getList,
-  add                 : {
+  api: channelList.getList,
+  add: {
     show: true,
-    api : channelList.save,
+    api: channelList.save,
     auth: ['channel:list:save'],
   },
-  edit                : {
+  edit: {
     show: true,
-    api : channelList.update,
+    api: channelList.update,
     auth: ['channel:list:update'],
   },
-  export              : {
+  export: {
     show: true,
-    url : 'channel/list/export',
+    url: 'channel/list/export',
     auth: ['channel:list:export'],
   },
-  beforeRequest (params) {
-    params.orderBy   = 'id'
+  beforeRequest(params) {
+    params.orderBy = 'id'
     params.orderType = 'desc'
   },
 })
 
 const columns = reactive([
   {
-    title      : 'ID',
-    dataIndex  : 'id',
-    formType   : 'input-number',
-    search     : true,
-    hide       : false,
-    display    : false,
-    width      : 80,
+    title: 'ID',
+    dataIndex: 'id',
+    formType: 'input-number',
+    search: true,
+    hide: false,
+    display: false,
+    width: 80,
     placeholder: '无需填写',
   },
   {
-    title            : '总代',
-    dataIndex        : 'top_id',
-    formType         : 'input-number',
-    placeholder      : '即隶属哪个总代ID',
+    title: '总代',
+    dataIndex: 'top_id',
+    formType: 'input-number',
+    placeholder: '即隶属哪个总代ID',
     searchPlaceholder: '总代id',
-    search           : true,
-    hide             : false,
-    display          : false,
-    width            : 80,
-    commonRules      : {
-      required: false,
-      message : '将自动绑定总代关系，无需填写',
-    },
-  },
-  {
-    title      : '上级(ID)',
-    dataIndex  : 'parent_id',
-    formType   : 'input-number',
-    placeholder: '直属上级的ID',
-    search     : true,
-    hide       : false,
-    display    : false,
-    width      : 80,
+    search: true,
+    hide: false,
+    display: false,
+    width: 80,
     commonRules: {
       required: false,
-      message : '将自动绑定上级关系，无需填写',
+      message: '将自动绑定总代关系，无需填写',
     },
   },
   {
-    title          : '渠道账号',
-    dataIndex      : 'channel_account',
-    formType       : 'input',
-    search         : true,
-    commonRules    : {
-      required : true,
-      message  : '渠道账号6-32位，允许数字、小写字母、下划线_或连接线-，不得为空，不允许大写字母',
+    title: '上级(ID)',
+    dataIndex: 'parent_id',
+    formType: 'input-number',
+    placeholder: '直属上级的ID',
+    search: true,
+    hide: false,
+    display: false,
+    width: 80,
+    commonRules: {
+      required: false,
+      message: '将自动绑定上级关系，无需填写',
+    },
+  },
+  {
+    title: '渠道账号',
+    dataIndex: 'channel_account',
+    formType: 'input',
+    search: true,
+    commonRules: {
+      required: true,
+      message: '渠道账号6-32位，允许数字、小写字母、下划线_或连接线-，不得为空，不允许大写字母',
       minLength: 6,
       maxLength: 32,
-      match    : /^(?![0-9])[a-z0-9_-]+$/,
+      match: /^(?![0-9])[a-z0-9_-]+$/,
     },
     addDefaultValue: 'of-',
-    extra          : '渠道账号默认会自动指定一个开头字符串，请补充后面的字符串即可',
-    width          : 120,
+    extra: '渠道账号默认会自动指定一个开头字符串，请补充后面的字符串即可',
+    width: 120,
   },
   {
-    title      : '渠道密码',
-    dataIndex  : 'channel_pwd',
-    formType   : 'input-password',
+    title: '渠道密码',
+    dataIndex: 'channel_pwd',
+    formType: 'input-password',
     editDisplay: true,
-    addDisplay : true,
+    addDisplay: true,
     commonRules: {
       required: true,
-      message : '请输入渠道账号密码',
+      message: '请输入渠道账号密码',
     },
-    hide       : true,
+    hide: true,
   },
   {
-    title      : '渠道名',
-    dataIndex  : 'channel_name',
-    formType   : 'input',
-    search     : true,
+    title: '渠道名',
+    dataIndex: 'channel_name',
+    formType: 'input',
+    search: true,
     commonRules: {
       required: true,
-      message : '请输入渠道名',
+      message: '请输入渠道名',
     },
-    width      : 150,
+    width: 150,
   },
   {
-    title      : '推广类型',
-    dataIndex  : 'ad_type',
-    formType   : 'radio',
-    search     : true,
+    title: '推广类型',
+    dataIndex: 'ad_type',
+    formType: 'radio',
+    search: true,
     commonRules: {
       required: true,
-      message : '请选择推广类型',
+      message: '请选择推广类型',
     },
-    multiple   : false,
-    dict       : {
-      name       : 'ad-type',
-      props      : {
+    multiple: false,
+    dict: {
+      name: 'ad-type',
+      props: {
         label: 'title',
         value: 'key',
       },
       translation: true,
     },
-    width      : 80,
+    width: 80,
   },
   {
-    title          : '状态',
-    dataIndex      : 'is_enabled',
-    formType       : 'radio',
-    search         : true,
-    commonRules    : {
+    title: '状态',
+    dataIndex: 'is_enabled',
+    formType: 'radio',
+    search: true,
+    commonRules: {
       required: true,
-      message : '请选择开启还是关闭',
+      message: '请选择开启还是关闭',
     },
-    multiple       : false,
-    checkedValue   : '1',
-    uncheckedValue : '0',
-    dict           : {
-      name       : 'is_enabled',
-      props      : {
+    multiple: false,
+    checkedValue: '1',
+    uncheckedValue: '0',
+    dict: {
+      name: 'is_enabled',
+      props: {
         label: 'title',
         value: 'key',
       },
       translation: true,
     },
-    width          : 60,
+    width: 60,
     addDefaultValue: 1,
   },
   {
-    title    : '更新时间',
+    title: '更新时间',
     dataIndex: 'updated_at',
-    formType : 'date',
-    search   : true,
-    hide     : false,
-    disabled : true,
-    display  : false,
-    sortable : {
+    formType: 'date',
+    search: true,
+    hide: false,
+    disabled: true,
+    display: false,
+    sortable: {
       sortDirections: [
         'ascend',
         'descend',
       ],
-      sorter        : true,
+      sorter: true,
     },
-    showTime : true,
-    width    : 150,
+    showTime: true,
+    width: 150,
   },
   {
-    title    : '层级',
+    title: '层级',
     dataIndex: 'level',
-    formType : 'input-number',
-    width    : 60,
-    hide     : false,
-    disabled : true,
-    display  : false,
+    formType: 'input-number',
+    width: 60,
+    hide: false,
+    disabled: true,
+    display: false,
   },
   {
-    title    : '扣量规则ID',
+    title: '扣量规则ID',
     dataIndex: 'rule_id',
-    formType : 'input',
-    hide     : true,
-    disabled : true,
-    display  : false,
+    formType: 'input',
+    hide: true,
+    disabled: true,
+    display: false,
   },
   {
-    title    : '产品',
+    title: '产品',
     dataIndex: 'product_ids',
-    formType : 'checkbox',
-    hide     : true,
-    dict     : {
-      url        : 'product/list/my-products',
+    formType: 'checkbox',
+    hide: true,
+    dict: {
+      url: 'product/list/my-products',
       translation: true,
-      props      : {
+      props: {
         label: 'product_name',
         value: 'id',
       },
     },
-    width    : 100,
+    width: 100,
   }, // {
   //   title: '产品',
   //   dataIndex: 'product_ids',
@@ -383,21 +380,21 @@ const columns = reactive([
   //   editDisplay: true,
   // },
   {
-    title      : '备注信息',
-    dataIndex  : 'remark',
-    formType   : 'textarea',
-    addDisplay : false,
+    title: '备注信息',
+    dataIndex: 'remark',
+    formType: 'textarea',
+    addDisplay: false,
     editDisplay: false,
-    hide       : true,
+    hide: true,
   },
   {
-    title      : '创建时间',
-    dataIndex  : 'created_at',
-    formType   : 'date',
-    addDisplay : false,
+    title: '创建时间',
+    dataIndex: 'created_at',
+    formType: 'date',
+    addDisplay: false,
     editDisplay: false,
-    hide       : true,
-    showTime   : true,
+    hide: true,
+    showTime: true,
   },
 ])
 
