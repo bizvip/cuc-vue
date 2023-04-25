@@ -14,17 +14,17 @@ export default {
   // 请求参数
   requestParams: {},
   // 设置分页组件每页记录数
-  pageSizeOption: [10, 20, 50, 100],
+  pageSizeOption: [15, 50, 100],
   // 是否开启表格分页
   tablePagination: false,
   // 设置选择列
   rowSelection: undefined,
   // 是否显示边框
-  bordered: { wrapper: true, cell: true },
+  bordered: { wrapper: false, cell: false },
   // 是否开启拖拽排序
   dragSort: false,
   // 每页记录数
-  pageSize: 10,
+  pageSize: 15,
   // 子节点为空隐藏节点按钮
   hideExpandButtonOnEmpty: true,
   // 默认展开所有行
@@ -36,7 +36,7 @@ export default {
   // 新增、编辑、删除完成后是否刷新表格
   dataCompleteRefresh: true,
   // 表格大小
-  size: 'large',
+  size: 'medium',
   // 是否开启双击编辑数据
   isDbClickEdit: false,
   // 是否显示展开/折叠按钮

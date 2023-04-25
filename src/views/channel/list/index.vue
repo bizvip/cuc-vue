@@ -9,7 +9,6 @@
             <template #is_enabled="{ record }">
                 <a-switch size="small"
                           :default-checked="parseInt(record.is_enabled) === 1"
-                          checked-value="1" unchecked-value="0"
                           checked-text="开" unchecked-text="关"
                           @change="updateValue($event, record.id,'is_enabled')"
                 />

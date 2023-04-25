@@ -293,14 +293,14 @@ const crud = reactive({
   isDbClickEdit: false,
   beforeOpenEdit: (record) => {
     if (record.id === 1) {
-      Message.error('创始人不可编辑')
+      Message.error('超管不可编辑')
       return false
     }
     return true
   },
   beforeDelete: (ids) => {
     if (ids.includes(1)) {
-      Message.error('创始人不可删除')
+      Message.error('超管不可删除')
       return false
     }
     return true
@@ -405,14 +405,15 @@ const columns = reactive([
         message: '角色必选'
       }
     ],
+    display: true,
+    addDefaultValue: 1002,
+    addReadonly: true,
+    addDisabled: true,
     editDefaultValue: async (record) => {
       const response = await user.read(record.id)
       return response.data.roleList.map(item => item.id)
     },
-    addDisplay: true,
-    addDisabled: false,
-    editDisplay: true,
-    editDisabled: true
+    editDisabled: true,
   },
   {
     title: '手机',
