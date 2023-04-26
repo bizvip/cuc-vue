@@ -14,7 +14,7 @@ export default {
   // 请求参数
   requestParams: {},
   // 设置分页组件每页记录数
-  pageSizeOption: [15, 50, 100],
+  pageSizeOption: [12, 50, 100],
   // 是否开启表格分页
   tablePagination: false,
   // 设置选择列
@@ -24,7 +24,7 @@ export default {
   // 是否开启拖拽排序
   dragSort: false,
   // 每页记录数
-  pageSize: 15,
+  pageSize: 12,
   // 子节点为空隐藏节点按钮
   hideExpandButtonOnEmpty: true,
   // 默认展开所有行

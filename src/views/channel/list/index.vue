@@ -196,6 +196,17 @@ const options = reactive({
     params.orderBy = 'id'
     params.orderType = 'desc'
   },
+  contextMenu: {
+    enabled: true,
+    items: [
+      // { operation: 'print' },
+      { operation: 'refresh' },
+      // { operation: 'divider' },
+      { operation: 'add' },
+      // { operation: 'edit' },
+      // { operation: 'delete' }
+    ]
+  }
 })
 
 const columns = reactive([

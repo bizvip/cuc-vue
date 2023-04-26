@@ -8,12 +8,20 @@
                 </a-avatar>
                 <div class="pl-3 mt-2">
                     <div class="content-block-title">
-                        {{ userStore.user.nickname || userStore.user.username }}
-                        <a-tag v-bind:color="parseInt(userStore.user.status) !== 1 ? 'red' : null" size="medium"
-                               bordered>{{
-                            parseInt(userStore.user.status) !== 1 ? '账号已停用' : '欢迎回来'
-                            }}
-                        </a-tag>
+                        {{ userStore.user.username }}
+                        <template v-if="parseInt(userStore.user.status) !== 1">
+                            <a-tag color="red" size="medium" bordered>
+                                账号已停用
+                            </a-tag>
+                        </template>
+                        <a-space>
+                            <a-tag size="medium">
+                                最后登陆IP：{{ userStore.user.login_ip }}
+                            </a-tag>
+                            <a-tag size="medium">
+                                最后登陆时间：{{ userStore.user.login_time }}
+                            </a-tag>
+                        </a-space>
                     </div>
                     <div class="leading-5 mt-2">
                         欢迎使用渠道联盟中心管理系统，同联盟，共发财

@@ -313,8 +313,8 @@ const columns = reactive([
     dataIndex: 'id',
     addDisplay: false,
     editDisplay: false,
-    width: 50,
-    hide: true
+    width: 85,
+    hide: false
   },
   {
     title: '头像',
