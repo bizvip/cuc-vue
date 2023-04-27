@@ -17,13 +17,13 @@
     api: loginLog.getPageList,
     showIndex: false,
     pageLayout: 'fixed',
-    rowSelection: { showCheckedAll: true },
+    rowSelection: false,
     requestParams: { orderBy: 'login_time', orderType: 'desc' },
     delete: { show: true, api: loginLog.deletes, auth: ['system:loginLog:delete'] },
   })
 
   const columns = reactive([
-    { title: 'ID', dataIndex: 'id', addDisplay: false, editDisplay: false, width: 50, hide: true },
+    { title: 'ID', dataIndex: 'id', addDisplay: false, editDisplay: false, width: 75, hide: false },
     { title: '登录用户', dataIndex: 'username', search: true, width: 150 }, 
     { 
       title: '登录状态', dataIndex: 'status', search: true, width: 120, formType: 'select',

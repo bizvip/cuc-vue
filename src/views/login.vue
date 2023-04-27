@@ -16,7 +16,7 @@
   const Verify = ref(null)
 
   const loading = ref(false)
-  const form = reactive({ username: 'admin', password: 'fuck123.', code: '' })
+  const form = reactive({ username: 'admin', password: 'qwe123qwe', code: '' })
 
   const userStore = useUserStore()
 

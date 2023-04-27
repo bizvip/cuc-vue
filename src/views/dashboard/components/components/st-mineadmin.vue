@@ -9,7 +9,7 @@
                         type="outline"
                         class="w-4/5"
                         @click="openPage('https://www.google.com')"
-                >官方网站
+                >草榴导航
                 </a-button>
             </a-card>
             <a-card class="rounded-sm text-center mt-2 lg:mt-0" :body-style="{ padding: 0 }" :bordered="false">
@@ -17,7 +17,7 @@
                         type="outline"
                         class="w-4/5"
                         @click="openPage('https://doc.google.com')"
-                >官方网站
+                >乐乐导航
                 </a-button>
             </a-card>
             <a-card class="rounded-sm text-center mt-2" :body-style="{ padding: 0 }" :bordered="false">
@@ -25,7 +25,7 @@
                         type="outline"
                         class="w-4/5"
                         @click="openPage('https://官方网站.com/kanyxmo/MineAdmin')"
-                >官方网站
+                >草榴导航
                 </a-button>
             </a-card>
             <a-card class="rounded-sm text-center mt-2" :body-style="{ padding: 0 }" :bordered="false">
@@ -33,7 +33,7 @@
                         type="outline"
                         class="w-4/5"
                         @click="openPage('https://官方网站.com/xmo/MineAdmin')"
-                >官方网站
+                >草榴导航
                 </a-button>
             </a-card>
             <a-card class="rounded-sm text-center mt-2" :body-style="{ padding: 0 }" :bordered="false">
@@ -41,7 +41,7 @@
                         type="outline"
                         class="w-4/5"
                         @click="openPage('https://官方网站.com/xmo/MineAdmin/releases')"
-                >官方网站
+                >乐乐导航
                 </a-button>
             </a-card>
             <a-card class="rounded-sm text-center mt-2" :body-style="{ padding: 0 }" :bordered="false">
@@ -49,7 +49,7 @@
                         type="outline"
                         class="w-4/5"
                         @click="openPage('https://doc.官方网站.com/faqs/')"
-                >官方网站
+                >乐乐导航
                 </a-button>
             </a-card>
         </div>
