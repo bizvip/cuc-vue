@@ -10,7 +10,7 @@ export default {
    * 获取渠道列表分页列表
    * @returns
    */
-  getList(params = {}) {
+  getList (params = {}) {
     return request({
       url: 'channel/list/index',
       method: 'get',
@@ -19,10 +19,21 @@ export default {
   },
 
   /**
+   * 获取渠道列表dict数据
+   * @returns
+   */
+  getDictList () {
+    return request({
+      url: 'channel/list/dict',
+      method: 'get',
+    })
+  },
+
+  /**
    * 添加渠道列表
    * @returns
    */
-  save(data = {}) {
+  save (data = {}) {
     return request({
       url: 'channel/list/save',
       method: 'post',
@@ -34,7 +45,7 @@ export default {
    * 更新渠道列表数据
    * @returns
    */
-  update(id, data = {}) {
+  update (id, data = {}) {
     return request({
       url: 'channel/list/update/' + id,
       method: 'put',
@@ -46,7 +57,7 @@ export default {
    * 读取渠道列表
    * @returns
    */
-  read(data = {}) {
+  read (data = {}) {
     return request({
       url: 'channel/list/read',
       method: 'get',
@@ -58,7 +69,7 @@ export default {
    * 读取渠道单条
    * @returns
    */
-  getOne(id = 0) {
+  getOne (id = 0) {
     return request({
       url: 'channel/list/read/' + id,
       method: 'get'
@@ -69,7 +80,7 @@ export default {
    * 更改渠道列表数据
    * @returns
    */
-  updateValue(data = {}) {
+  updateValue (data = {}) {
     return request({
       url: 'channel/list/changeStatus',
       method: 'put',
@@ -81,7 +92,7 @@ export default {
    * 渠道列表导出
    * @returns
    */
-  exportExcel(params = {}) {
+  exportExcel (params = {}) {
     return request({
       url: 'channel/list/export',
       method: 'post',
@@ -89,6 +100,5 @@ export default {
       params
     })
   },
-
 
 }
