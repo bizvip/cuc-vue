@@ -10,7 +10,7 @@ export default {
    * 获取登陆预警分页列表
    * @returns
    */
-  getList (params = {}) {
+  getList(params = {}) {
     return request({
       url: 'channel/alert/index',
       method: 'get',
@@ -22,7 +22,7 @@ export default {
    * 读取登陆预警
    * @returns
    */
-  read (data = {}) {
+  read(data = {}) {
     return request({
       url: 'channel/alert/read',
       method: 'get',
@@ -34,13 +34,11 @@ export default {
    * 更改登陆预警数据
    * @returns
    */
-  changeStatus (data = {}) {
+  updateValue(data = {}) {
     return request({
       url: 'channel/alert/changeStatus',
       method: 'put',
       data
     })
   },
-
-
 }

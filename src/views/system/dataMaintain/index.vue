@@ -1,5 +1,5 @@
 <template>
-  <div class="ma-content-block lg:flex justify-between p-4">
+  <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
     <!-- CRUD 组件 -->
     <ma-crud :options="crud" :columns="columns" ref="crudRef" @selection-change="selectChange">
       <!-- 表格操作按钮扩展 -->

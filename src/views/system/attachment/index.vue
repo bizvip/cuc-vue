@@ -1,5 +1,5 @@
 <template>
-  <div class="ma-content-block lg:flex justify-between p-4">
+  <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
     <div class="lg:w-2/12 w-full h-full p-2 shadow">
       <ma-tree-slider
         v-model="sliderData"

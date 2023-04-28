@@ -1,34 +1,35 @@
 <template>
     <div>
-    <div>
+        <div>
 
+        </div>
+        <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
+
+            <ma-crud :options="options" :columns="columns" ref="crudRef">
+
+                <template #is_enabled="{record}">
+                    <a-switch :checked-value="1" unchecked-value="0"
+                              @change="updateValue($event, record.id,'is_enabled')"
+                              :default-checked="parseInt(record.is_enabled) === 1"
+                              checked-text="开" unchecked-text="关"/>
+                </template>
+
+                <template #sort="{ record }">
+                    <a-input-number v-model="record.sort"
+                                    placeholder="可填入排序，默认0" :min="0"
+                                    :max="4200000000"
+                                    @change="updateValue($event,record.id,'sort')"/>
+                </template>
+
+                <template #logo_url="{ record }">
+                    <a-image :src="record.logo_url" fit="cover" width="60"
+                             height="60" :alt="record.product_name"/>
+                </template>
+
+            </ma-crud>
+
+        </div>
     </div>
-    <div class="ma-content-block lg:flex justify-between p-4">
-
-        <ma-crud :options="options" :columns="columns" ref="crudRef">
-
-            <template #is_enabled="{record}">
-                <a-switch :checked-value="1" unchecked-value="0"
-                          @change="updateValue($event, record.id,'is_enabled')"
-                          :default-checked="parseInt(record.is_enabled) === 1"
-                          checked-text="开" unchecked-text="关"/>
-            </template>
-
-            <template #sort="{ record }">
-                <a-input-number v-model="record.sort"
-                                placeholder="可填入排序，默认0" :min="0"
-                                :max="4200000000"
-                                @change="updateValue($event,record.id,'sort')"/>
-            </template>
-
-            <template #logo_url="{ record }">
-                <a-image :src="record.logo_url" fit="cover" width="60"
-                         height="60" :alt="record.product_name"/>
-            </template>
-
-        </ma-crud>
-
-    </div></div>
 </template>
 <script setup>
 import { reactive, ref } from 'vue'
@@ -79,11 +80,12 @@ const options = reactive({
   //   realApi: productList.realDeletes,
   //   realAuth: ['product:list:realDeletes'],
   // },
-  recovery: {
-    show: true,
-    api: productList.recoverys,
-    auth: ['product:list:recovery'],
-  }, // import: {
+  // recovery: {
+  //   show: true,
+  //   api: productList.recoverys,
+  //   auth: ['product:list:recovery'],
+  // },
+  // import: {
   //   show: true,
   //   url: 'product/list/import',
   //   templateUrl: 'product/list/downloadTemplate',
@@ -205,16 +207,6 @@ const columns = reactive([
   {
     title: '更新时间',
     dataIndex: 'updated_at',
-    formType: 'date',
-    addDisplay: false,
-    editDisplay: false,
-    hide: true,
-    showTime: true,
-    range: false,
-  },
-  {
-    title: '删除时间',
-    dataIndex: 'deleted_at',
     formType: 'date',
     addDisplay: false,
     editDisplay: false,

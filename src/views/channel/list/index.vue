@@ -1,5 +1,5 @@
 <template>
-    <div class="ma-content-block lg:flex justify-between p-4">
+    <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
         <ma-crud :options="options" :columns="columns" ref="crudRef">
 
             <template #search-updated_at="{ searchForm, component }">
@@ -7,11 +7,9 @@
             </template>
 
             <template #is_enabled="{ record }">
-                <a-switch size="small"
-                          :default-checked="parseInt(record.is_enabled) === 1"
-                          checked-text="开" unchecked-text="关"
-                          @change="updateValue($event, record.id,'is_enabled')"
-                />
+                <a-switch size="small" :default-checked="parseInt(record.is_enabled) === 1" checked-text="开"
+                          unchecked-text="关" checked-value="1" unchecked-value="0"
+                          @change="updateValue($event, record.id,'is_enabled')"/>
             </template>
 
             <template #top_id="{record}">

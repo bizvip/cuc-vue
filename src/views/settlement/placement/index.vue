@@ -1,5 +1,5 @@
 <template>
-    <div class="ma-content-block lg:flex justify-between p-4">
+    <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
         <ma-crud :options="options" :columns="columns" ref="crudRef" table-layout-fixed="table-layout-fixed">
         </ma-crud>
     </div>

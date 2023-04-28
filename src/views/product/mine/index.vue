@@ -1,5 +1,5 @@
 <template>
-    <div class="ma-content-block lg:flex justify-between p-4">
+    <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
         <ma-crud :options="options" :columns="columns" ref="crudRef">
         </ma-crud>
     </div>
@@ -114,15 +114,6 @@ const columns = reactive([
     formType: 'date',
     addDisplay: false,
     editDisplay: false,
-    showTime: true
-  },
-  {
-    title: '删除时间',
-    dataIndex: 'deleted_at',
-    formType: 'date',
-    addDisplay: false,
-    editDisplay: false,
-    hide: true,
     showTime: true
   }
 ])
