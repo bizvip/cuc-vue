@@ -8,7 +8,7 @@
                 <a-button
                         type="outline"
                         class="w-4/5"
-                        @click="openPage('https://www.google.com')"
+                        @click="openPage('https://qq18s.com')"
                 >草榴导航
                 </a-button>
             </a-card>
@@ -16,7 +16,7 @@
                 <a-button
                         type="outline"
                         class="w-4/5"
-                        @click="openPage('https://doc.google.com')"
+                        @click="openPage('https://098z.com')"
                 >乐乐导航
                 </a-button>
             </a-card>
@@ -24,7 +24,7 @@
                 <a-button
                         type="outline"
                         class="w-4/5"
-                        @click="openPage('https://官方网站.com/kanyxmo/MineAdmin')"
+                        @click="openPage('https://qq18s.com')"
                 >草榴导航
                 </a-button>
             </a-card>
@@ -32,7 +32,7 @@
                 <a-button
                         type="outline"
                         class="w-4/5"
-                        @click="openPage('https://官方网站.com/xmo/MineAdmin')"
+                        @click="openPage('https://qq18s.com')"
                 >草榴导航
                 </a-button>
             </a-card>
@@ -40,7 +40,7 @@
                 <a-button
                         type="outline"
                         class="w-4/5"
-                        @click="openPage('https://官方网站.com/xmo/MineAdmin/releases')"
+                        @click="openPage('https://098z.com')"
                 >乐乐导航
                 </a-button>
             </a-card>
@@ -48,7 +48,7 @@
                 <a-button
                         type="outline"
                         class="w-4/5"
-                        @click="openPage('https://doc.官方网站.com/faqs/')"
+                        @click="openPage('https://098z.com')"
                 >乐乐导航
                 </a-button>
             </a-card>
