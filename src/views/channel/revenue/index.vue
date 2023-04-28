@@ -1,7 +1,27 @@
 <template>
-    <div class="ma-content-block lg:flex justify-between p-4">
-        <ma-crud :options="options" :columns="columns" ref="crudRef">
-        </ma-crud>
+    <div>
+        <div class="ma-content-block justify-between p-2">
+            <a-card :bordered="false" :style="{ width: '100%'}">
+                <a-card-grid
+                        v-for="(_, index) in new Array(20)"
+                        :key="index"
+                        :hoverable="index % 2 === 0"
+                        :style="{ width: '20%' }"
+                >
+                    <a-card class="card-demo" :bordered="false" hoverable="hoverable">
+                        <a-statistic :title="`色播产品${index}`" :value="Math.floor(Math.random() * 1000000)" :value-style="{color:'#333'}"
+                                     show-group-separator animation placeholder="暂无数据">
+                            <template #extra>累计收益：{{ Math.floor(Math.random() * 1000000 * 100) }}</template>
+                        </a-statistic>
+                    </a-card>
+                </a-card-grid>
+            </a-card>
+        </div>
+
+        <div class="ma-content-block lg:flex justify-between p-2 mt-2">
+            <ma-crud :options="options" :columns="columns" ref="crudRef">
+            </ma-crud>
+        </div>
     </div>
 </template>
 <script setup>
@@ -31,7 +51,12 @@ const options = reactive({
     show: true,
     url: 'channel/revenue/export',
     auth: ['channel:revenue:export']
-  }
+  },
+  beforeRequest(params) {
+    params.orderBy = 'id'
+    params.orderType = 'desc'
+  },
+  searchColNumber: 3
 })
 
 const columns = reactive([
@@ -91,7 +116,7 @@ const columns = reactive([
     editDisplay: false
   },
   {
-    title: '创建权限',
+    title: '创建数据',
     dataIndex: 'created_by',
     formType: 'input',
     addDisplay: false,
@@ -119,3 +144,12 @@ const columns = reactive([
 ])
 </script>
 <script> export default { name: 'channel:revenue' } </script>
+<style scoped>
+.card-demo {
+    width: 100%;
+}
+
+.card-demo :deep(.arco-card-header) {
+    border: none;
+}
+</style>

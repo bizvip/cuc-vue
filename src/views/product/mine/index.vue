@@ -1,26 +1,18 @@
 <template>
-  <div class="ma-content-block lg:flex justify-between p-4">
-    <ma-crud :options="options" :columns="columns" ref="crudRef">
-    </ma-crud>
-  </div>
+    <div class="ma-content-block lg:flex justify-between p-4">
+        <ma-crud :options="options" :columns="columns" ref="crudRef">
+        </ma-crud>
+    </div>
 </template>
 <script setup>
-import { ref, reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import productMine from '@/api/product/productMine'
-import { Message } from '@arco-design/web-vue'
-import tool from '@/utils/tool'
-import * as common from '@/utils/common'
 
 const crudRef = ref()
 
-
-
-
 const options = reactive({
   id: 'cm_product_mine',
-  rowSelection: {
-    showCheckedAll: true
-  },
+  rowSelection: false,
   pk: 'id',
   operationColumn: false,
   operationWidth: 160,
@@ -33,101 +25,101 @@ const options = reactive({
 
 const columns = reactive([
   {
-    title: "ID",
-    dataIndex: "id",
-    formType: "input",
+    title: 'ID',
+    dataIndex: 'id',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "渠道ID",
-    dataIndex: "channel_id",
-    formType: "select",
+    title: '渠道ID',
+    dataIndex: 'channel_id',
+    formType: 'select',
     search: true,
     addDisplay: false,
     editDisplay: false,
     multiple: false
   },
   {
-    title: "渠道标识",
-    dataIndex: "channel_slug",
-    formType: "input",
+    title: '渠道标识',
+    dataIndex: 'channel_slug',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "渠道分成",
-    dataIndex: "channel_sharing_rate",
-    formType: "input",
+    title: '渠道分成',
+    dataIndex: 'channel_sharing_rate',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "到帐率",
-    dataIndex: "transfer_rate",
-    formType: "input",
+    title: '到帐率',
+    dataIndex: 'transfer_rate',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "产品名字",
-    dataIndex: "product_name",
-    formType: "input",
+    title: '产品名字',
+    dataIndex: 'product_name',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "LOGO",
-    dataIndex: "logo_url",
-    formType: "input",
+    title: 'LOGO',
+    dataIndex: 'logo_url',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "官网地址",
-    dataIndex: "official_url",
-    formType: "input",
+    title: '官网地址',
+    dataIndex: 'official_url',
+    formType: 'input',
     addDisplay: false,
     editDisplay: false
   },
   {
-    title: "状态",
-    dataIndex: "is_enabled",
-    formType: "select",
+    title: '状态',
+    dataIndex: 'is_enabled',
+    formType: 'select',
     search: true,
     addDisplay: false,
     editDisplay: false,
     multiple: false,
     dict: {
-      name: "is_enabled",
+      name: 'is_enabled',
       props: {
-        label: "title",
-        value: "key"
+        label: 'title',
+        value: 'key'
       },
       translation: true
     }
   },
   {
-    title: "创建时间",
-    dataIndex: "created_at",
-    formType: "date",
+    title: '创建时间',
+    dataIndex: 'created_at',
+    formType: 'date',
     addDisplay: false,
     editDisplay: false,
     hide: true,
     showTime: true
   },
   {
-    title: "更新时间",
-    dataIndex: "updated_at",
-    formType: "date",
+    title: '更新时间',
+    dataIndex: 'updated_at',
+    formType: 'date',
     addDisplay: false,
     editDisplay: false,
     showTime: true
   },
   {
-    title: "删除时间",
-    dataIndex: "deleted_at",
-    formType: "date",
+    title: '删除时间',
+    dataIndex: 'deleted_at',
+    formType: 'date',
     addDisplay: false,
     editDisplay: false,
     hide: true,

@@ -1,4 +1,8 @@
 <template>
+    <div>
+    <div>
+
+    </div>
     <div class="ma-content-block lg:flex justify-between p-4">
 
         <ma-crud :options="options" :columns="columns" ref="crudRef">
@@ -24,7 +28,7 @@
 
         </ma-crud>
 
-    </div>
+    </div></div>
 </template>
 <script setup>
 import { reactive, ref } from 'vue'
