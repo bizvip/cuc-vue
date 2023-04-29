@@ -21,7 +21,6 @@ import { Message } from '@arco-design/web-vue'
 
 const crudRef = ref()
 
-
 const updateValue = (value, id, name) => {
   channelAlert.updateValue({
     id,
@@ -34,7 +33,6 @@ const updateValue = (value, id, name) => {
     console.log(e)
   })
 }
-
 
 const options = reactive({
   id: 'cm_channel_alert',

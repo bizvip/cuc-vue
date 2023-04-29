@@ -5,17 +5,35 @@
     </div>
 </template>
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import productBind from '@/api/product/productBind'
 import { Message } from '@arco-design/web-vue'
 import channelList from '@/api/channel/channelList'
 
 const crudRef = ref()
 
+let dictData = null
+onMounted(async () => {
+  if (!dictData) {
+    let resp = await channelList.getDictList()
+    if (parseInt(resp.code) === 200) {
+      dictData = resp.data
+      console.log(dictData)
+    } else {
+      console.log('请求失败')
+    }
+  }
+})
 const switchStatus = (statusValue, id, statusName) => {
-  productBind.changeStatus({ id, statusName, statusValue }).then(res => {
+  productBind.changeStatus({
+    id,
+    statusName,
+    statusValue
+  }).then(res => {
     res.success && Message.success(res.message)
-  }).catch(e => { console.log(e) })
+  }).catch(e => {
+    console.log(e)
+  })
 }
 
 const options = reactive({
@@ -59,8 +77,11 @@ const columns = reactive([
       message: '请输入渠道账号'
     },
     dict: {
-      url: channelList.getDictList(),
-      props: { label: 'channel_account', value: 'id' },
+      data: dictData,
+      props: {
+        label: 'channel_account',
+        value: 'id',
+      },
       translation: true
     }
   },

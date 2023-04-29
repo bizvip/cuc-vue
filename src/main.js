@@ -46,4 +46,4 @@ app.config.globalProperties.$title = import.meta.env.VITE_APP_TITLE
 app.mount('#app')
 
 tool.capsule('渠道联盟中心管理系统', `1.0.0`)
-console.log('133-1-1-A.C.')
+console.log('13311-A.C.')
