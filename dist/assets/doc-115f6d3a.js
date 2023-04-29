@@ -1,0 +1,1 @@
+import{a2 as e}from"./request-7ebe3d6d.js";const r={login(t={}){return e({url:"apiDoc/login",method:"post",data:t})},getAppAndInterfaceList(t=null){return e({url:"apiDoc/getAppAndInterfaceList/"+t,method:"get"})},getColumnList(t=null){return e({url:"apiDoc/getColumnList/"+t,method:"get"})}};export{r as d};
