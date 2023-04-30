@@ -200,7 +200,7 @@ const options = reactive({
       // { operation: 'print' },
       { operation: 'refresh' },
       // { operation: 'divider' },
-      { operation: 'add' },
+      // { operation: 'add' },
       // { operation: 'edit' },
       // { operation: 'delete' }
     ]

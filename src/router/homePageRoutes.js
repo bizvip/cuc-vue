@@ -3,7 +3,7 @@ const homePageRoutes = [
     name: 'dashboard',
     path: '/dashboard',
     meta: {
-      title: '仪表盘',
+      title: '总览',
       icon: 'icon-dashboard',
       type: 'M',
       affix: true

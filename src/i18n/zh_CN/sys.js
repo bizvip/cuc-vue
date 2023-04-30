@@ -51,7 +51,7 @@ export default {
     verifyCode: '请输入验证码',
     verifyCodeNotice: '请输入正确的验证码',
     loginBtn: '登录',
-    otherLoginType: '其他登录方式暂不支持'
+    otherLoginType: '推荐使用Chrome浏览器'
   },
   verifyCode: {
     switch: '点击切换验证码',

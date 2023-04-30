@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-alert closable style="clear: both">点击表格行任意地方可以查看操作请求数据的详情</a-alert>
+        <a-alert closable style="clear: both">点击表格任意地方可以查看详情数据</a-alert>
 
         <div class="ma-content-block lg:flex justify-between pt-4 pl-2 pr-2 pb-2">
             <!-- CRUD 组件 -->
