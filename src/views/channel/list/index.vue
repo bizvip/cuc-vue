@@ -3,25 +3,32 @@
         <ma-crud :options="options" :columns="columns" ref="crudRef">
 
             <template #search-updated_at="{ searchForm, component }">
-                <a-range-picker shortcuts-position="right" :shortcuts="rangeShortcuts"/>
+                <a-range-picker shortcuts-position="right"
+                                :shortcuts="rangeShortcuts"/>
             </template>
 
             <template #is_enabled="{ record }">
-                <a-switch size="small" :default-checked="parseInt(record.is_enabled) === 1" checked-text="开"
-                          unchecked-text="关" checked-value="1" unchecked-value="0"
+                <a-switch :default-checked="parseInt(record.is_enabled) === 1"
+                          checked-text="开"
+                          unchecked-text="关" checked-value="1"
+                          unchecked-value="0"
                           @change="updateValue($event, record.id,'is_enabled')"/>
             </template>
 
             <template #top_id="{record}">
                 <a-tag :bordered="parseInt(record.top_id) === 0"
                        :color="parseInt(record.top_id) === 0 ? 'blue' : ''">
-                    {{ parseInt(record.top_id) === 0 ? '主渠道' : '子渠道' }}
+                    {{
+                    parseInt(record.top_id) === 0 ? '主渠道' : '子 | ' + record.top_id
+                    }}
                 </a-tag>
             </template>
 
             <template #parent_id="{record}">
                 <a-typography-text>
-                    {{ parseInt(record.parent_id) === 0 ? '' : record.parent_id }}
+                    {{
+                    parseInt(record.parent_id) === 0 ? '' : record.parent_id
+                    }}
                 </a-typography-text>
             </template>
 
@@ -33,13 +40,17 @@
             </template>
 
             <template #ad_type="{record}">
-                <a-typography-text v-if="record.ad_type === 'CPA'" type="secondary">{{ record.ad_type }}
+                <a-typography-text v-if="record.ad_type === 'CPA'"
+                                   type="secondary">{{ record.ad_type }}
                 </a-typography-text>
-                <a-typography-text v-else-if="record.ad_type === 'CPS'" type="primary">{{ record.ad_type }}
+                <a-typography-text v-else-if="record.ad_type === 'CPS'"
+                                   type="primary">{{ record.ad_type }}
                 </a-typography-text>
-                <a-typography-text v-else-if="record.ad_type === 'CPT'" type="warning">{{ record.ad_type }}
+                <a-typography-text v-else-if="record.ad_type === 'CPT'"
+                                   type="warning">{{ record.ad_type }}
                 </a-typography-text>
-                <a-typography-text v-else-if="record.ad_type === 'CPC'" type="success">{{ record.ad_type }}
+                <a-typography-text v-else-if="record.ad_type === 'CPC'"
+                                   type="success">{{ record.ad_type }}
                 </a-typography-text>
             </template>
 
@@ -62,13 +73,15 @@
         </ma-crud>
 
         <a-drawer v-model:visible="detailVisible" width="700px" :footer="false">
-            <template #title>查看渠道 {{ record?.data.channel_account }} 详情</template>
+            <template #title>查看渠道 {{ record?.data.channel_account }} 详情
+            </template>
             <a-spin :loading="detailLoading" tip="数据加载中..." class="block">
                 <a-typography>
                     <a-form>
                         <div v-for="(value, key) in record?.data" :key="key">
                             <a-form-item :field="key" :label="key">
-                                <a-input :model-value="value" readonly="readonly"/>
+                                <a-input :model-value="value"
+                                         readonly="readonly"/>
                             </a-form-item>
                         </div>
                     </a-form>
@@ -219,7 +232,7 @@ const columns = reactive([
     placeholder: '无需填写',
   },
   {
-    title: '总代',
+    title: '总代 | ID',
     dataIndex: 'top_id',
     formType: 'input-number',
     placeholder: '即隶属哪个总代ID',
@@ -282,9 +295,13 @@ const columns = reactive([
     search: true,
     commonRules: {
       required: true,
-      message: '请输入渠道名',
+      message: '渠道名字',
+      minLength: 2,
+      maxLength: 30,
+      match: /^[\u4e00-\u9fa5a-zA-Z0-9-_]{2,30}$/,
     },
     width: 150,
+    extra: '渠道名只允许英文大小写、数字、中文、连接线、下划线，长度2到30以内'
   },
   {
     title: '推广类型',
