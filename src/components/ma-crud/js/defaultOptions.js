@@ -14,7 +14,7 @@ export default {
   // 请求参数
   requestParams: {},
   // 设置分页组件每页记录数
-  pageSizeOption: [8, 18, 88],
+  pageSizeOption: [12, 36, 108],
   // 是否开启表格分页
   tablePagination: false,
   // 设置选择列
@@ -24,7 +24,7 @@ export default {
   // 是否开启拖拽排序
   dragSort: false,
   // 每页记录数
-  pageSize: 18,
+  pageSize: 12,
   // 子节点为空隐藏节点按钮
   hideExpandButtonOnEmpty: true,
   // 默认展开所有行
@@ -36,7 +36,7 @@ export default {
   // 新增、编辑、删除完成后是否刷新表格
   dataCompleteRefresh: true,
   // 表格大小
-  size: 'small',
+  size: 'large',
   // 是否开启双击编辑数据
   isDbClickEdit: false,
   // 是否显示展开/折叠按钮

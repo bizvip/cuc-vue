@@ -394,7 +394,8 @@ const columns = reactive([
             },
         },
         width: 100,
-    }, // {
+    },
+    // {
     //   title: '产品',
     //   dataIndex: 'product_ids',
     //   formType: 'component',
