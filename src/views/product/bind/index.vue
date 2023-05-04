@@ -5,9 +5,9 @@
     </div>
 </template>
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import {onMounted, reactive, ref} from 'vue'
 import productBind from '@/api/product/productBind'
-import { Message } from '@arco-design/web-vue'
+import {Message} from '@arco-design/web-vue'
 import channelList from '@/api/channel/channelList'
 
 const crudRef = ref()
@@ -235,4 +235,4 @@ const columns = reactive([
   }
 ])
 </script>
-<script> export default { name: 'product:bind' } </script>
+<script> export default {name: 'product:bind'} </script>
