@@ -36,7 +36,7 @@ export default {
   // 新增、编辑、删除完成后是否刷新表格
   dataCompleteRefresh: true,
   // 表格大小
-  size: 'large',
+  size: 'medium',
   // 是否开启双击编辑数据
   isDbClickEdit: false,
   // 是否显示展开/折叠按钮
@@ -60,7 +60,7 @@ export default {
   // 全局搜索标签宽度
   searchLabelWidth: '85px',
   // 搜索每行列数
-  searchColNumber: 4,
+  searchColNumber: 3,
   // 搜索提交按钮文案
   searchSubmitButtonText: '搜索',
   // 搜索重置按钮文案
@@ -70,7 +70,6 @@ export default {
 
   // 搜索提交前置方法
   beforeSearch: (requestParams) => {},
-
 
   // 请求前置处理
   beforeRequest: () => {},
@@ -263,12 +262,12 @@ export default {
     enabled: true,
     // 右键菜单配置
     items: [
-      { operation: 'print' },
       { operation: 'refresh' },
-      { operation: 'divider' },
-      { operation: 'add' },
-      { operation: 'edit' },
-      { operation: 'delete' }
+      { operation: 'print' },
+      // { operation: 'divider' },
+      // { operation: 'add' },
+      // { operation: 'edit' },
+      // { operation: 'delete' }
     ]
   }
 }

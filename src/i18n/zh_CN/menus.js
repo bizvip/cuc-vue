@@ -45,7 +45,7 @@ export default {
   // 工具
   'devTools': '工具',
   'setting:module': '模块管理',
-  'setting:code': '代码生成器',
+  'setting:code': 'CRUD生成',
   'setting:code:update': '编辑生成信息',
   'setting:crontab': '定时任务',
   'setting:table': '数据表设计器',
