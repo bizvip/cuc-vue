@@ -30,7 +30,7 @@
         <a-descriptions :column="1" size="large" bordered title="内存信息" class="lg:w-9/12 w-full">
           <a-descriptions-item label="总内存">{{ memory.total }}G</a-descriptions-item>
           <a-descriptions-item label="已使用内存">{{ memory.usage }}G</a-descriptions-item>
-          <a-descriptions-item label="PHP使用内存">{{ memory.php }}M</a-descriptions-item>
+          <a-descriptions-item label="应用使用内存">{{ memory.php }}M</a-descriptions-item>
           <a-descriptions-item label="空闲内存">{{ memory.free }}G</a-descriptions-item>
           <a-descriptions-item label="使用率">{{ memory.rate }}%</a-descriptions-item>
         </a-descriptions>
@@ -49,9 +49,9 @@
       <div class="flex justify-between w-full redis-info mt-3" v-else>
         <a-descriptions :column="2" size="large" bordered title="PHP及环境信息" class="w-full">
           <a-descriptions-item label="操作系统">{{ phpenv.os }}</a-descriptions-item>
-          <a-descriptions-item label="PHP">{{ phpenv.php_version }}</a-descriptions-item>
-          <a-descriptions-item label="Swoole">{{ phpenv.swoole_version }}</a-descriptions-item>
-          <a-descriptions-item label="Hyperf">{{ phpenv.hyperf_version }}</a-descriptions-item>
+          <a-descriptions-item label="底层环境">{{ phpenv.php_version }}</a-descriptions-item>
+          <a-descriptions-item label="协程环境">{{ phpenv.swoole_version }}</a-descriptions-item>
+          <a-descriptions-item label="框架">{{ phpenv.hyperf_version }}</a-descriptions-item>
           <a-descriptions-item label="渠道管理中心版本"> 1.0.0 </a-descriptions-item>
           <a-descriptions-item label="系统物理路径">{{ phpenv.project_path }}</a-descriptions-item>
           <a-descriptions-item label="系统启动时间">{{ phpenv.start_time }}</a-descriptions-item>
