@@ -42,7 +42,7 @@ export default {
   goHome: '回到首页',
   notFoundPage: '啊哦，访问的页面被火星人劫走了...',
   login: {
-    slogan: '渠道有联盟，赚钱如狂飙',
+    slogan: '渠道有联盟，赚钱来狂飙',
     title: '登录',
     username: '账户',
     usernameNotice: '请输入账户',
