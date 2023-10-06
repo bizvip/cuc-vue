@@ -13,7 +13,13 @@
       <a-input v-model="userInfo.email" allow-clear />
     </a-form-item>
     <a-form-item label="个人签名" label-col-flex="80px">
-      <a-textarea v-model="userInfo.signed" :max-length="255" class="h-28" show-word-limit allow-clear />
+      <a-textarea
+        v-model="userInfo.signed"
+        :max-length="255"
+        class="h-28"
+        show-word-limit
+        allow-clear
+      />
     </a-form-item>
     <a-form-item label-col-flex="80px">
       <a-button html-type="submit" type="primary">保存</a-button>
@@ -22,24 +28,23 @@
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
-  import { useUserStore } from '@/store'
-  import { Message } from '@arco-design/web-vue'
-  import user from '@/api/system/user'
+import { reactive } from "vue";
+import { useUserStore } from "@/store";
+import { Message } from "@arco-design/web-vue";
+import user from "@/api/system/user";
 
-  const userStore = useUserStore()
+const userStore = useUserStore();
 
-  const userInfo = reactive({
-    ...userStore.user
-  })
+const userInfo = reactive({
+  ...userStore.user,
+});
 
-  const modifyInfo = async (data) => {
-    data.values.avatar = userStore.user.avatar
-    const response = await user.updateInfo(data.values)
-    if (response.success) {
-      Message.success(response.message)
-      userStore.user = data.values
-      return
-    }
+const modifyInfo = async (data) => {
+  data.values.avatar = userStore.user.avatar;
+  const response = await user.updateInfo(data.values);
+  if (response.success) {
+    Message.success(response.message);
+    userStore.user = data.values;
   }
+};
 </script>
