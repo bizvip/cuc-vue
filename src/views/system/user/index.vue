@@ -47,7 +47,12 @@
             <icon-google />
             验证码
           </a-link>
+          <a-link @click="tableStruct(record.name)">
+            <icon-eye />
+            查看
+          </a-link>
         </template>
+
         <template #operationAfterExtend="{ record }">
           <a-dropdown
             trigger="hover"
@@ -90,6 +95,19 @@
         </a-select>
       </a-form-item>
     </a-modal>
+
+    <a-modal v-model:visible="visible" width="900px" :footer="false">
+      <template #title>设置谷歌验证码</template>
+      <ma-crud
+        ref="ggRef"
+        :options="ggCrud"
+        :columns="[
+          { title: '字段名称', dataIndex: 'column_name' },
+          { title: '字段类型', dataIndex: 'column_type' },
+          { title: '字段注释', dataIndex: 'column_comment' },
+        ]"
+      />
+    </a-modal>
   </div>
 </template>
 
@@ -100,14 +118,31 @@ import dept from "@/api/system/dept";
 import user from "@/api/system/user";
 import commonApi from "@/api/common";
 import { Message, Modal } from "@arco-design/web-vue";
+import dataMaintain from "@/api/system/dataMaintain";
 
 const depts = ref([]);
 const homePageList = ref([]);
 const crudRef = ref();
 
+// google auth
+const ggRef = ref();
+const visible = ref(false);
+const ggCrud = reactive({
+  api: dataMaintain.getDetailed,
+  requestParams: {},
+  autoRequest: false,
+  showTools: false,
+});
+
 const setHomeVisible = ref(false);
 const userid = ref();
 const homePage = ref("");
+
+const tableStruct = (name) => {
+  // tableCrud.requestParams.table = name;
+  visible.value = true;
+  // tableRef.value.requestData();
+};
 
 onMounted(() => {
   dept.tree().then((res) => {
