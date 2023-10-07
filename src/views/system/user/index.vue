@@ -34,29 +34,26 @@
         </template>
         <!-- 操作列 -->
         <template #operationCell="{ record }">
-          <div v-if="record.id == 1">
+          <div v-if="parseInt(record.id) === 1">
             <a-link @click="updateCache(record.id)">
               <icon-refresh />
               更新缓存
             </a-link>
           </div>
         </template>
+
         <!-- 操作列扩展 -->
         <template #operationBeforeExtend="{ record }">
-          <a-link @click="updateCache(record.id)">
+          <a-link @click="ggAuthQrCode(record.id)">
             <icon-google />
-            验证码
-          </a-link>
-          <a-link @click="tableStruct(record.name)">
-            <icon-eye />
-            查看
+            安全码
           </a-link>
         </template>
 
         <template #operationAfterExtend="{ record }">
           <a-dropdown
             trigger="hover"
-            v-if="record.id != 1 && !isRecovery"
+            v-if="parseInt(record.id) !== 1 && !isRecovery"
             @select="selectOperation($event, record.id)"
           >
             <a-link>
@@ -96,17 +93,17 @@
       </a-form-item>
     </a-modal>
 
-    <a-modal v-model:visible="visible" width="900px" :footer="false">
+    <a-modal v-model:visible="visible" width="700px" :footer="false">
       <template #title>设置谷歌验证码</template>
-      <ma-crud
-        ref="ggRef"
-        :options="ggCrud"
-        :columns="[
-          { title: '字段名称', dataIndex: 'column_name' },
-          { title: '字段类型', dataIndex: 'column_type' },
-          { title: '字段注释', dataIndex: 'column_comment' },
-        ]"
-      />
+      <div>
+        <a-image
+          width="200px"
+          :src="ggUser.src"
+          :title="ggUser.title"
+          :description="ggUser.description"
+          footerPosition="outer"
+        />
+      </div>
     </a-modal>
   </div>
 </template>
@@ -118,7 +115,6 @@ import dept from "@/api/system/dept";
 import user from "@/api/system/user";
 import commonApi from "@/api/common";
 import { Message, Modal } from "@arco-design/web-vue";
-import dataMaintain from "@/api/system/dataMaintain";
 
 const depts = ref([]);
 const homePageList = ref([]);
@@ -128,17 +124,23 @@ const crudRef = ref();
 const ggRef = ref();
 const visible = ref(false);
 const ggCrud = reactive({
-  api: dataMaintain.getDetailed,
+  api: user.read(1),
   requestParams: {},
   autoRequest: false,
   showTools: false,
+});
+
+const ggUser = reactive({
+  src: "https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp",
+  title: "请使用工具扫描此二维码",
+  description: "即可绑定Google Auth验证码",
 });
 
 const setHomeVisible = ref(false);
 const userid = ref();
 const homePage = ref("");
 
-const tableStruct = (name) => {
+const ggAuthQrCode = (name) => {
   // tableCrud.requestParams.table = name;
   visible.value = true;
   // tableRef.value.requestData();
@@ -221,7 +223,6 @@ const selectOperation = (value, id) => {
   if (value === "setHomePage") {
     setHomeVisible.value = true;
     userid.value = id;
-    return;
   }
 };
 
