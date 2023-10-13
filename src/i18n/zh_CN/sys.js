@@ -50,7 +50,7 @@ export default {
     passwordNotice: "请输入密码",
     verifyCode: "请输入验证码",
     verifyCodeNotice: "请输入正确的验证码",
-    verifyOtp: "请输入正确的OTP验证码",
+    verifyOtp: "请输入正确 OTP / Google 2FA 验证码",
     loginBtn: "登录",
     otherLoginType: "推荐使用Chrome浏览器",
   },

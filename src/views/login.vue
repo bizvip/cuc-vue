@@ -156,6 +156,7 @@ const handleSubmit = async ({ values, errors }) => {
               :placeholder="$t('sys.login.verifyOtp')"
               size="large"
               allow-clear
+              max-length="6"
             >
               <template #prefix>
                 <icon-safe />
@@ -179,7 +180,7 @@ const handleSubmit = async ({ values, errors }) => {
             >{{ $t("sys.login.otherLoginType") }}
           </a-divider>
           <div class="flex w-3/4 pt-2 mx-auto items-stretch justify-around">
-            &copy; M3 渠道联盟 共创财富
+            &copy; M3 渠道联盟 真·共同富裕
           </div>
         </a-form>
       </div>

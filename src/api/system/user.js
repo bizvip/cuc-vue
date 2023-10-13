@@ -1,4 +1,4 @@
-import { request } from '@/utils/request.js'
+import { request } from "@/utils/request.js";
 
 export default {
   /**
@@ -7,10 +7,10 @@ export default {
    */
   getPageList(params = {}) {
     return request({
-      url: 'system/user/index',
-      method: 'get',
-      params
-    })
+      url: "system/user/index",
+      method: "get",
+      params,
+    });
   },
 
   /**
@@ -19,10 +19,10 @@ export default {
    */
   getRecyclePageList(params = {}) {
     return request({
-      url: 'system/user/recycle',
-      method: 'get',
-      params
-    })
+      url: "system/user/recycle",
+      method: "get",
+      params,
+    });
   },
 
   /**
@@ -31,9 +31,20 @@ export default {
    */
   read(id) {
     return request({
-      url: 'system/user/read/' + id,
-      method: 'get'
-    })
+      url: "system/user/read/" + id,
+      method: "get",
+    });
+  },
+
+  /**
+   * 读取一个用户的谷歌安全码信息
+   * @returns
+   */
+  readOtpInfo(id) {
+    return request({
+      url: "system/user/readOtpInfo/" + id,
+      method: "get",
+    });
   },
 
   /**
@@ -42,10 +53,10 @@ export default {
    */
   save(params = {}) {
     return request({
-      url: 'system/user/save',
-      method: 'post',
-      data: params
-    })
+      url: "system/user/save",
+      method: "post",
+      data: params,
+    });
   },
 
   /**
@@ -54,10 +65,10 @@ export default {
    */
   deletes(data) {
     return request({
-      url: 'system/user/delete',
-      method: 'delete',
-      data
-    })
+      url: "system/user/delete",
+      method: "delete",
+      data,
+    });
   },
 
   /**
@@ -66,10 +77,10 @@ export default {
    */
   recoverys(data) {
     return request({
-      url: 'system/user/recovery',
-      method: 'put',
-      data
-    })
+      url: "system/user/recovery",
+      method: "put",
+      data,
+    });
   },
 
   /**
@@ -78,10 +89,10 @@ export default {
    */
   realDeletes(data) {
     return request({
-      url: 'system/user/realDelete',
-      method: 'delete',
-      data
-    })
+      url: "system/user/realDelete",
+      method: "delete",
+      data,
+    });
   },
 
   /**
@@ -90,10 +101,20 @@ export default {
    */
   update(id, data = {}) {
     return request({
-      url: 'system/user/update/' + id,
-      method: 'put',
-      data
-    })
+      url: "system/user/update/" + id,
+      method: "put",
+      data,
+    });
+  },
+  /**
+   * 更新数据
+   * @returns
+   */
+  updateSecret(id = {}) {
+    return request({
+      url: "system/user/updateSecret/" + id,
+      method: "put",
+    });
   },
 
   /**
@@ -102,10 +123,10 @@ export default {
    */
   changeStatus(data = {}) {
     return request({
-      url: 'system/user/changeStatus',
-      method: 'put',
-      data
-    })
+      url: "system/user/changeStatus",
+      method: "put",
+      data,
+    });
   },
 
   /**
@@ -114,10 +135,10 @@ export default {
    */
   clearCache(params = {}) {
     return request({
-      url: 'system/user/clearCache',
-      method: 'post',
-      data: params
-    })
+      url: "system/user/clearCache",
+      method: "post",
+      data: params,
+    });
   },
 
   /**
@@ -126,10 +147,10 @@ export default {
    */
   setHomePage(data = {}) {
     return request({
-      url: 'system/user/setHomePage',
-      method: 'post',
-      data
-    })
+      url: "system/user/setHomePage",
+      method: "post",
+      data,
+    });
   },
 
   /**
@@ -138,10 +159,10 @@ export default {
    */
   initUserPassword(data) {
     return request({
-      url: 'system/user/initUserPassword',
-      method: 'put',
-      data
-    })
+      url: "system/user/initUserPassword",
+      method: "put",
+      data,
+    });
   },
 
   /**
@@ -150,10 +171,10 @@ export default {
    */
   updateInfo(data = {}) {
     return request({
-      url: 'system/user/updateInfo',
-      method: 'post',
-      data
-    })
+      url: "system/user/updateInfo",
+      method: "post",
+      data,
+    });
   },
 
   /**
@@ -162,9 +183,9 @@ export default {
    */
   modifyPassword(data = {}) {
     return request({
-      url: 'system/user/modifyPassword',
-      method: 'post',
-      data
-    })
+      url: "system/user/modifyPassword",
+      method: "post",
+      data,
+    });
   },
-}
+};

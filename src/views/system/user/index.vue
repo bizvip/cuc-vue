@@ -44,7 +44,10 @@
 
         <!-- 操作列扩展 -->
         <template #operationBeforeExtend="{ record }">
-          <a-link @click="ggAuthQrCode(record.id)">
+          <a-link
+            @click="ggAuthQrCode(record.id)"
+            v-auth="['system:user:initUserPassword']"
+          >
             <icon-google />
             安全码
           </a-link>
@@ -93,16 +96,32 @@
       </a-form-item>
     </a-modal>
 
-    <a-modal v-model:visible="visible" width="700px" :footer="false">
+    <a-modal v-model:visible="visible" :footer="false">
       <template #title>设置谷歌验证码</template>
-      <div>
+      <div style="width: 100%">
         <a-image
-          width="200px"
+          style="display: block; margin: auto"
+          width="300px"
           :src="ggUser.src"
-          :title="ggUser.title"
-          :description="ggUser.description"
           footerPosition="outer"
         />
+        <a-divider />
+        <a-space align="center" direction="vertical" fill>
+          <a-button
+            type="outline"
+            status="danger"
+            long
+            shape="round"
+            @click="reset2FA(ggUser.id)"
+            v-auth="['system:user:initUserPassword']"
+          >
+            <template #icon>
+              <icon-delete />
+              <icon-google />
+            </template>
+            作废当前绑定，并生成新两步验证
+          </a-button>
+        </a-space>
       </div>
     </a-modal>
   </div>
@@ -115,35 +134,56 @@ import dept from "@/api/system/dept";
 import user from "@/api/system/user";
 import commonApi from "@/api/common";
 import { Message, Modal } from "@arco-design/web-vue";
+import { error, success } from "@/utils/common";
 
 const depts = ref([]);
 const homePageList = ref([]);
 const crudRef = ref();
-
-// google auth
-const ggRef = ref();
-const visible = ref(false);
-const ggCrud = reactive({
-  api: user.read(1),
-  requestParams: {},
-  autoRequest: false,
-  showTools: false,
-});
-
-const ggUser = reactive({
-  src: "https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp",
-  title: "请使用工具扫描此二维码",
-  description: "即可绑定Google Auth验证码",
-});
-
 const setHomeVisible = ref(false);
 const userid = ref();
 const homePage = ref("");
 
-const ggAuthQrCode = (name) => {
-  // tableCrud.requestParams.table = name;
+// google auth
+const visible = ref(false);
+const ggUser = reactive({
+  id: 0,
+  src: "",
+  secret: "",
+});
+
+const ggAuthQrCode = (id) => {
+  let res = ref();
+  user
+    .readOtpInfo(id)
+    .then((response) => {
+      Object.assign(res, response);
+      ggUser.id = res.data.id;
+      ggUser.src = res.data.qrcode_url;
+      ggUser.secret = res.data.otp_secret;
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error);
+      error("错误", error);
+    });
   visible.value = true;
-  // tableRef.value.requestData();
+};
+
+const reset2FA = (id) => {
+  user
+    .updateSecret(id)
+    .then((response) => {
+      if (parseInt(response.code) === 200 && response.success === true) {
+        ggAuthQrCode(id);
+        return success(
+          "操作成功",
+          "二维码图片已经自动刷新，请务必记得重新扫描二维码，为账号绑定新谷歌验证器，否则将无法再登录",
+        );
+      }
+    })
+    .catch((err) => {
+      console.error("An error occurred:", err);
+      error("错误", err);
+    });
 };
 
 onMounted(() => {
