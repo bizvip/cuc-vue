@@ -180,7 +180,7 @@ const handleSubmit = async ({ values, errors }) => {
             >{{ $t("sys.login.otherLoginType") }}
           </a-divider>
           <div class="flex w-3/4 pt-2 mx-auto items-stretch justify-around">
-            &copy; M3 渠道联盟 真·共同富裕
+            &copy; M3 用·渠道联盟 真·共同富裕
           </div>
         </a-form>
       </div>
